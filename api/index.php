@@ -10,7 +10,7 @@ if ($_FILES['webshot_file']['error'] == 0) {
     $fileContent = file_get_contents($fileTmpName);
     $base64Data = base64_encode($fileContent);
 
-    // Set cURL options
+    // Set cURL options for upload image
     $curl = curl_init();
 
 	curl_setopt_array($curl, array(
@@ -64,9 +64,6 @@ if ($_FILES['webshot_file']['error'] == 0) {
 
 // Fuunction to get the insight of the screen shot from CHAT GPT
 function get_analytics($url){
-	// $transformed = return_sample_response();
- //    return array("status" => true,"data" => $transformed);
-
     $curl = curl_init();
 
     // Getting analysis from the chatgpt
@@ -106,85 +103,13 @@ function get_analytics($url){
       CURLOPT_POSTFIELDS => $curl_post_fields,
       CURLOPT_HTTPHEADER => array(
         'Content-Type: application/json',
-        'Authorization: Bearer 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'
+        'Authorization: Bearer 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'
       ),
     ));
 
     $response = curl_exec($curl);
     // echo $response;
     curl_close($curl);
-
- //    $response_arr = [
-	//     "id" => "chatcmpl-8LjFNwswPgtSqk9awYIVEOUco6pSZ",
-	//     "object" => "chat.completion",
-	//     "created" => 1700189509,
-	//     "model" => "gpt-4-1106-vision-preview",
-	//     "usage" => [
-	//         "prompt_tokens" => 1553,
-	//         "completion_tokens" => 460,
-	//         "total_tokens" => 2013
-	//     ],
-	//     "choices" => [
-	//         [
-	//             "message" => [
-	//                 "role" => "assistant",
-	//                 "content" => '{
-	//                     "score": 89,
-	//                     "positives": [
-	//                         {
-	//                             "heading": "Clear Messaging",
-	//                             "info": "The website clearly communicates the purpose and the primary service offered, which is an AI customer support agent capable of understanding and leveraging website content."
-	//                         },
-	//                         {
-	//                             "heading": "Strong Call-to-Action",
-	//                             "info": "The \'Start a free trial\' button is a prominent call-to-action that encourages user engagement and conversion."
-	//                         },
-	//                         {
-	//                             "heading": "Trust-Building Elements",
-	//                             "info": "The display of \'Product Hunt #1 Product of the Day\' badge adds credibility and trust in the service."
-	//                         },
-	//                         {
-	//                             "heading": "Visibility of Key Features",
-	//                             "info": "Important features and selling points of the service like \'95+ languages supported\' and \'14-day free trial\' are well-highlighted to inform potential customers."
-	//                         },
-	//                         {
-	//                             "heading": "Interactive Elements",
-	//                             "info": "Live chatbot (SiteGPT Bot) interaction in the bottom right-hand corner offers immediate assistance, creating an interactive user experience."
-	//                         }
-	//                     ],
-	//                     "improvements": [
-	//                         {
-	//                             "heading": "User Testimonials and Reviews",
-	//                             "info": "Adding a section with customer testimonials and reviews could improve trust and provide social proof."
-	//                         },
-	//                         {
-	//                             "heading": "More Detailed Information on the Homepage",
-	//                             "info": "While the homepage is clean and concise, some users may look for more in-depth explanations of features and benefits without needing to click through to other pages."
-	//                         },
-	//                         {
-	//                             "heading": "Content Hierarchy",
-	//                             "info": "There could be a more distinctive hierarchy of content to guide the user through information more effortlessly."
-	//                         },
-	//                         {
-	//                             "heading": "Mobile User Experience",
-	//                             "info": "Ensuring that the mobile version of the website is as cleanly presented and easy to navigate as the desktop version could improve conversion from mobile users."
-	//                         },
-	//                         {
-	//                             "heading": "Loading Speed Optimization",
-	//                             "info": "Ensuring that all elements of the page load swiftly is crucial for keeping the user\'s attention and preventing page abandonment."
-	//                         }
-	//                     ]
-	//                 }'
-	//             ],
-	//             "finish_details" => [
-	//                 "type" => "stop",
-	//                 "stop" => ""
-	//             ],
-	//             "index" => 0
-	//         ]
-	//     ]
-	// ];
-    // echo $response;die;
     $response_arr = json_decode($response,true);
     //check whether the request was given proper message
     if(!empty($response_arr['choices'][0]['message']['content'])){
@@ -202,7 +127,6 @@ function get_analytics($url){
         // CHat GPT doesn't provided proper details
         return array("status" => false);
     }
-    // return $response;
 }
 
 function transform_response($message){
@@ -243,25 +167,6 @@ function extract_json($str) {
         return array();
     }
 }
-// function extract_json($string){
-//     $matches = [];
-//     preg_match('/\{(?:[^{}]|(?R))*\}/', $string, $matches); // Using regex to extract JSON
-
-//     if (!empty($matches)) {
-//         $jsonString = $matches[0]; // Extracted JSON string
-//         $json = json_decode($jsonString, true); // Decoding JSON to an associative array
-
-//         // Check if JSON decoding was successful and return the result
-//         if ($json !== null && json_last_error() === JSON_ERROR_NONE) {
-//             return $json;
-//         } else {
-//             return null; // Return null if JSON is invalid
-//         }
-//     } else {
-//         return null; // Return null if no JSON-like structure is found
-//     }
-
-// }
 
 
 

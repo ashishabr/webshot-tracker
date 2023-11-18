@@ -12,8 +12,8 @@ $(document).ready(function() {
 	    	reader.onload = function() {
 	            var dataURL = reader.result;
 	            $('.image_main_tre img').attr('src',dataURL);
+	            $('.loader_main_box').find('.img_loader img').attr('src',dataURL);
 	            $('.image_main_tre').show();
-	            // $('#previewImage').attr('src', dataURL);
 	        };
 	        reader.readAsDataURL(file);
         }else{
@@ -142,10 +142,6 @@ $(document).on('click',".uplod_btn", function(){
 		                          </span>
 		                        </div>
 		                      </div>`);
-                			// elem_improve.find('.txt_main_blkdr').text(improvements.heading);
-                			// elem_improve.find('.txt_main_blkdr_info').text(improvements.info);
-                			// elem_improve.find('.check-data').html(``);
-                			// elem_improve.find('.check-data').removeClass('clr-green').addClass('clr-yellow');
                 			container.find('.improvement_points').find('.improve_list').append(elem_improve);
                 		})
                 		container.find('.improvement_points').find('.improve_list').show();
