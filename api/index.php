@@ -107,13 +107,10 @@ function get_analytics($url){
       ),
     ));
 
-    // $response = curl_exec($curl);
-    // // echo $response;
-    // curl_close($curl);
+    $response = curl_exec($curl);
+    // echo $response;
+    curl_close($curl);
     $response_arr = json_decode($response,true);
-    $transformed = return_sample_response();
-    return array("status" => true,"data" => $transformed);
-    
     //check whether the request was given proper message
     if(!empty($response_arr['choices'][0]['message']['content'])){
         $message = $response_arr['choices'][0]['message']['content'];
@@ -139,45 +136,21 @@ function transform_response($message){
 }
 
 function return_sample_response(){
-    $data = array(
-    'score' => 87,
-    'positives' => array(
-                        array(
-                            'heading' => 'Strategic Call-to-Action Placement:',
-                            'info' => "The website effectively guides users with clear 'Start a free trial' and 'Book a demo' buttons."
-                        ),
-                        array(
-                            'heading' => 'Compelling Value Proposition:',
-                            'info' => "The headline 'Make AI your expert customer support agent' succinctly communicates the platform's unique value."
-                        ),
-                        array(
-                            'heading' => 'Appealing Feature Showcase:',
-                            'info' => "Engaging features like 'Personalized onboarding help' and '95+ languages supported' are prominently listed."
-                        ),
-                        array(
-                            'heading' => 'Trust-Boosting Recognition:',
-                            'info' => "The inclusion of 'PRODUCT HUNT #1 Product of the Day' badge serves as a powerful trust indicator."
-                        )
-                    ),
-                    'improvements' => array(
-                        array(
-                            'heading' => 'Streamlined Chatbot Presentation:',
-                            'info' => "Consider minimizing the chatbot overlay by default to enhance user experience."
-                        ),
-                        array(
-                            'heading' => 'Enhanced Readability Through Contrast:',
-                            'info' => "Improve color contrast between text and background for better readability, prioritizing accessibility."
-                        ),
-                        array(
-                            'heading' => 'Detailed Feature Descriptions:',
-                            'info' => "Provide more comprehensive descriptions of features to clearly communicate unique advantages."
-                        ),
-                        array(
-                            'heading' => 'Social Proof Integration:',
-                            'info' => "Introduce customer testimonials or case studies directly on the homepage for added social proof."
-                        )
-                    )
-                );
+    $data = [
+        'score' => 'CTR score of the website',
+        'positives' => [
+            'The website has a clear and prominent call-to-action with \'Start a free trial\' and \'Book a demo\' buttons.',
+            'The value proposition is immediately clear with the headline \'Make AI your expert customer support agent\'.',
+            'The site lists appealing features such as \'Personalized onboarding help\' and \'95+ languages supported\'.',
+            'There\'s a trust indicator with the badge \'PRODUCT HUNT #1 Product of the Day\'.'
+        ],
+        'improvements' => [
+            'The chatbot overlay on the bottom right could be a bit intrusive; consider minimizing it by default.',
+            'The color contrast between the text and background can be increased for better readability, especially for users with visual impairments.',
+            'Provide more detailed descriptions of the features or benefits to inform users clearly about the unique advantages over competitors.',
+            'Introduce customer testimonials or case studies for social proof directly on the homepage.'
+        ]
+    ];
     return $data;    
 }
 function extract_json($str) {
