@@ -40,6 +40,8 @@ To use WebshotRater, follow these steps:
 ## Demo - video link
 https://www.flexclip.com/share/44995273597f6c27ee11b24cbd264372a790e45.html
 
+![Screenshots]([url](https://github.com/ashishabr/webshot-tracker/blob/main/img/Screenshot%202023-11-22%20212924.png))
+
 ## Disclaimer
 
 WebshotRater provides evaluations based on AI algorithms and subjective analysis. Results may vary and are intended
