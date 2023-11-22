@@ -41,7 +41,7 @@ To use WebshotRater, follow these steps:
 https://www.flexclip.com/share/44995273597f6c27ee11b24cbd264372a790e45.html
 
 ![Screenshots](https://github.com/ashishabr/webshot-tracker/blob/main/img/Screenshot%202023-11-22%20212924.png)
-
+- <img src="https://github.com/ashishabr/webshot-tracker/blob/main/img/Screenshot%202023-11-22%20212924.png" alt="Alt Text" width="400" />
 ## Disclaimer
 
 WebshotRater provides evaluations based on AI algorithms and subjective analysis. Results may vary and are intended
